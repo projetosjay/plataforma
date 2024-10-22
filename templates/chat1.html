@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BetterHope - Apoio para Tutores e Mães</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #A2AEF7;
+            --secondary-color: #FFFDE2;
+            --text-color: #333;
+            --accent-color: #FF6B6B;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f0f2f5;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            color: var(--text-color);
+            font-weight: 300;
+        }
+
+        .card {
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            padding: 40px;
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+        }
+
+        h2 {
+            color: var(--primary-color);
+            margin-bottom: 30px;
+            font-size: 2.2rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 50%;
+            height: 3px;
+            background-color: var(--accent-color);
+        }
+
+        .introduction p {
+            margin-bottom: 20px;
+            text-align: justify;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid var(--primary-color);
+            border-radius: 30px;
+            font-size: 1rem;
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+            background-color: #f9f9f9;
+        }
+
+        .search-box:focus {
+            outline: none;
+            box-shadow: 0 0 10px rgba(162, 174, 247, 0.3);
+            background-color: #fff;
+        }
+
+        .groups-list {
+            list-style: none;
+        }
+
+        .group-item {
+            background-color: #fff;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .group-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .group-info {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .group-avatar {
+            width: 70px;
+            height: 70px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-weight: bold;
+            font-size: 1.4rem;
+            box-shadow: 0 5px 10px rgba(162, 174, 247, 0.3);
+        }
+
+        .group-details h3 {
+            margin-bottom: 5px;
+            color: var(--primary-color);
+            font-size: 1.3rem;
+        }
+
+        .group-details p {
+            color: #666;
+            font-size: 1rem;
+        }
+
+        .member-count {
+            background-color: var(--accent-color);
+            color: #fff;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            box-shadow: 0 3px 6px rgba(255, 107, 107, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .group-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .member-count {
+                margin-top: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>BetterHope</h1>
+            <p class="tagline">Apoio e informação para tutores e mães de crianças com deficiências</p>
+        </header>
+
+        <div class="card introduction">
+            <h2>Bem-vindo à BetterHope</h2>
+            <p>A tecnologia tem proporcionado uma maneira mais prática de buscar informações, estabelecendo-se como um recurso importante nas práticas diárias. Contudo, ainda não atende a todas as necessidades da população, especialmente aquelas pessoas em situação de vulnerabilidade econômica.</p>
+            <p>Criar um espaço acolhedor é fundamental para informar sobre como enfrentar as dificuldades diárias enfrentadas por tutores e mães de pessoas com deficiências. Como destaca Silva (2020), "um ambiente acolhedor promove a troca de experiências e o fortalecimento da rede de apoio".</p>
+            <p>A BetterHope se propõe a apoiar tutores e mães que receberam o diagnóstico de deficiência em seus filhos e que buscam o encontro com outros que enfrentam experiências semelhantes. Nosso objetivo é facilitar a compreensão de quadros como Autismo e Síndrome de Down, permitindo que cuidem de seus filhos com mais tranquilidade.</p>
+            <p>Nossa plataforma oferece um espaço para conversas e trocas de experiências do dia a dia, proporcionando apoio aos pais, responsáveis legais e tutores que têm dificuldade de acesso a informações e que se sentem isolados ou sobrecarregados.</p>
+        </div>
+
+        <div class="card">
+            <h2>Grupos de Conversa</h2>
+            <input type="text

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #A2AEF7;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #FFFDE2;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #A2AEF7;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #A2AEF7;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .groups-list {
+            list-style: none;
+        }
+
+        .group-item {
+            padding: 15px;
+            border: 1px solid #A2AEF7;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .group-item:hover {
+            background-color: #A2AEF7;
+            color: #FFFDE2;
+        }
+
+        .group-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .group-avatar {
+            width: 50px;
+            height: 50px;
+            background-color: #A2AEF7;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #FFFDE2;
+            font-weight: bold;
+        }
+
+        .group-details h3 {
+            margin-bottom: 5px;
+        }
+
+        .group-details p {
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .member-count {
+            background-color: #A2AEF7;
+            color: #FFFDE2;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.8em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Grupos de Conversa</h1>
+        <input type="text" class="search-box" placeholder="Pesquisar grupos...">
+        
+        <ul class="groups-list">
+            <li class="group-item">
+                <div class="group-info">
+                    <div class="group-avatar">TI</div>
+                    <div class="group-details">
+                        <h3>Tecnologia da Informação</h3>
+                        <p>Discussões sobre TI, programação e tecnologia</p>
+                    </div>
+                </div>
+                <span class="member-count">156 membros</span>
+            </li>
+            
+            <li class="group-item">
+                <div class="group-info">
+                    <div class="group-avatar">MK</div>
+                    <div class="group-details">
+                        <h3>Marketing Digital</h3>
+                        <p>Estratégias e dicas de marketing</p>
+                    </div>
+                </div>
+                <span class="member-count">89 membros</span>
+            </li>
+            
+            <li class="group-item">
+                <div class="group-info">
+                    <div class="group-avatar">DS</div>
+                    <div class="group-details">
+                        <h3>Design</h3>
+                        <p>Compartilhamento de ideias e projetos de design</p>
+                    </div>
+                </div>
+                <span class="member-count">123 membros</span>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>
