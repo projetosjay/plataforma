@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grupos de Chat</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #A2AEF7, #FCF8CC);
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 600px;
+        }
+
+        h2 {
+            color: #A2AEF7;
+            text-align: center;
+            margin-bottom: 15px;
+            font-size: 2em;
+            font-weight: 600;
+        }
+        .search-container {
+            margin-bottom: 20px;
+        }
+
+        .search-container input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #eee;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background: #f8f9fa;
+        }
+
+        .search-container input:focus {
+            border-color: #A2AEF7;
+            outline: none;
+            background: white;
+        }
+
+        .groups-container {
+            display: grid;
+            gap: 15px;
+            max-height: 400px;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+
+        .group-card {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 2px solid transparent;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .group-card.hidden {
+            display: none;
+        }
+
+        .group-card:hover {
+            transform: translateY(-2px);
+            border-color: #A2AEF7;
+            background: white;
+        }
+
+        .group-image {
+            width: 60px;
+            height: 60px;
+            background: #A2AEF7;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .group-info {
+            flex: 1;
+        }
+
+        .group-name {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .group-description {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .group-meta {
+            font-size: 12px;
+            color: #888;
+            display: flex;
+            gap: 10px;
+            margin-top: 5px;
+        }
+
+        .group-members {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .categories {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            overflow-x: auto;
+            padding-bottom: 10px;
+        }
+
+        .category {
+            padding: 8px 15px;
+            background: #f0f2f5;
+            border-radius: 20px;
+            font-size: 14px;
+            color: #666;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.3s ease;
+        }
+
+        .category:hover, .category.active {
+            background: #A2AEF7;
+            color: white;
+        }
+
+        .no-results {
+            text-align: center;
+            color: #666;
+            padding: 20px;
+            display: none;
+        }
+
+        .groups-container::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .groups-container::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+
+        .groups-container::-webkit-scrollbar-thumb {
+            background: #A2AEF7;
+            border-radius: 10px;
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 20px;
+            }
+            
+            .group-image {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Grupos de Chat</h2>
+        <div class="search-container">
+            <input type="text" placeholder="Buscar grupos..." id="searchInput">
+        </div>
+
+        <div class="categories" id="categories">
+            <div class="category active" data-category="todos">Todos</div>
+            <div class="category" data-category="populares">Populares</div>
+            <div class="category" data-category="recentes">Recentes</div>
+            <div class="category" data-category="tecnologia">Tecnologia</div>
+            <div class="category" data-category="esportes">Esportes</div>
+            <div class="category" data-category="música">Música</div>
+            <div class="category" data-category="arte">Arte</div>
+        </div>
+
+        <div class="groups-container" id="groupsContainer">
+            <!-- Os grupos serão inseridos via JavaScript -->
+        </div>
+        <div class="no-results" id="noResults">
+            Nenhum grupo encontrado com esses critérios.
+        </div>
+    </div>
+
+    <script>
+        const groups = [
+            {
+                name: "Tech Talks",
+                description: "Discussões sobre tecnologia e programação",
+                members: "2.5k",
+                online: "32",
+                image: "T",
+                categories: ["tecnologia", "populares"]
+            },
+            {
+                name: "Gamers Unite",
+                description: "Comunidade de jogadores e entusiastas",
+                members: "1.8k",
+                online: "45",
+                image: "G",
+                categories: ["tecnologia", "recentes"]
+            },
+            {
+                name: "Arte & Cultura",
+                description: "Compartilhe suas criações artísticas",
+                members: "950",
+                online: "18",
+                image: "A",
+                categories: ["arte"]
+            },
+            {
+                name: "Música & Melodia",
+                description: "Para amantes de música e compositores",
+                members: "1.2k",
+                online: "28",
+                image: "M",
+                categories: ["música", "recentes"]
+            },
+            {
+                name: "Esportes & Fitness",
+                description: "Dicas de treino e discussões esportivas",
+                members: "3.1k",
+                online: "67",
+                image: "E",
+                categories: ["esportes", "populares"]
+            }
+        ];
+
+        // Elementos DOM
+        const groupsContainer = document.getElementById('groupsContainer');
+        const searchInput = document.getElementById('searchInput');
+        const categoriesContainer = document.getElementById('categories');
+        const noResults = document.getElementById('noResults');
+
+        // Renderiza um grupo
+        function createGroupCard(group) {
+            return `
+                <div class="group-card" data-categories="${group.categories.join(',')}">
+                    <div class="group-image">${group.image}</div>
+                    <div class="group-info">
+                        <div class="group-name">${group.name}</div>
+                        <div class="group-description">${group.description}</div>
+                        <div class="group-meta">
+                            <div class="group-members">
+                                <span>👥 ${group.members} membros</span>
+                            </div>
+                            <span>🟢 ${group.online} online</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Renderiza todos os grupos
+        function renderGroups() {
+            groupsContainer.innerHTML = groups.map(group => createGroupCard(group)).join('');
+        }
+
+        // Filtra os grupos
+        function filterGroups() {
+            const searchTerm = searchInput.value.toLowerCase();
+            const activeCategory = document.querySelector('.category.active').dataset.category;
+            let hasVisibleGroups = false;
+
+            document.querySelectorAll('.group-card').forEach(card => {
+                const groupName = card.querySelector('.group-name').textContent.toLowerCase();
+                const groupDescription = card.querySelector('.group-description').textContent.toLowerCase();
+                const groupCategories = card.dataset.categories.split(',');
+                
+                const matchesSearch = groupName.includes(searchTerm) || 
+                                    groupDescription.includes(searchTerm);
+                const matchesCategory = activeCategory === 'todos' || 
+                                      groupCategories.includes(activeCategory);
+
+                if (matchesSearch && matchesCategory) {
+                    card.classList.remove('hidden');
+                    hasVisibleGroups = true;
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+
+            noResults.style.display = hasVisibleGroups ? 'none' : 'block';
+        }
+
+        // Event Listeners
+        searchInput.addEventListener('input', filterGroups);
+
+        categoriesContainer.addEventListener('click', (e) => {
+            if (e.target.classList.contains('category')) {
+                document.querySelectorAll('.category').forEach(cat => {
+                    cat.classList.remove('active');
+                });
+                e.target.classList.add('active');
+                filterGroups();
+            }
+        });
+
+        // Inicialização
+        renderGroups();
+    </script>
+</body>
+</html>

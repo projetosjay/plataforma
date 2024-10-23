@@ -2,15 +2,145 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #A2AEF7, #FCF8CC);
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        h2 {
+            color: #A2AEF7;
+            text-align: center;
+            margin-bottom: 15px;
+            font-size: 2em;
+            font-weight: 600;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .input-group {
+            position: relative;
+        }
+
+        input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #eee;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background: #f8f9fa;
+        }
+
+        input:focus {
+            border-color: #A2AEF7;
+            outline: none;
+            background: white;
+        }
+
+        input::placeholder {
+            color: #aaa;
+        }
+
+        button {
+            background: #A2AEF7;
+            color: white;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background: #8b9af0;
+            transform: translateY(-2px);
+        }
+
+        .register-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .forgot-password {
+            text-align: right;
+            margin-top: -10px;
+        }
+
+        a {
+            color: #A2AEF7;
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        a:hover {
+            color: #8b9af0;
+            text-decoration: underline;
+        }
+
+        .welcome-text {
+            text-align: center;
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 20px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <h2>Login</h2>
-    <form method="POST" action="{{ url_for('login') }}">
-        <input type="email" name="email" placeholder="Email" required>
-        <input type="password" name="password" placeholder="Senha" required>
-        <button type="submit">Login</button>
-    </form>
-    <a href="{{ url_for('register') }}">Não tenho uma conta. Cadastrar.</a>
+    <div class="container">
+        <h2>Login</h2>
+        <p class="welcome-text">Bem-vindo de volta!</p>
+        <form method="POST" action="{{ url_for('login') }}">
+            <div class="input-group">
+                <input type="email" name="email" placeholder="Email" required>
+            </div>
+            <div class="input-group">
+                <input type="password" name="password" placeholder="Senha" required>
+            </div>
+            <div class="forgot-password">
+                <a href="#">Esqueceu a senha?</a>
+            </div>
+            <button type="submit">Entrar</button>
+        </form>
+        <div class="register-link">
+            <a href="{{ url_for('register') }}">Não tenho uma conta. Cadastrar.</a>
+        </div>
+    </div>
 </body>
 </html>
