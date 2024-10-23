@@ -268,12 +268,12 @@
 
         <div class="categories" id="categories">
             <div class="category active" data-category="todos">Todos</div>
-            <div class="category" data-category="populares">Populares</div>
-            <div class="category" data-category="recentes">Recentes</div>
-            <div class="category" data-category="tecnologia">Tecnologia</div>
-            <div class="category" data-category="esportes">Esportes</div>
-            <div class="category" data-category="música">Música</div>
-            <div class="category" data-category="arte">Arte</div>
+            <div class="category" data-category="descoberta">Descoberta</div>
+            <div class="category" data-category="aceitação">Aceitação</div>
+            <div class="category" data-category="gravidez">Gravidez</div>
+            <div class="category" data-category="familia">Família</div>
+            <div class="category" data-category="educação">Educação</div>
+            <div class="category" data-category="social e escolar">Social e Escolar</div>
         </div>
 
         <div class="groups-container" id="groupsContainer">
@@ -286,44 +286,52 @@
     <script>
         const groups = [
             {
-                name: "Tech Talks",
-                description: "Discussões sobre tecnologia e programação",
+                name: "Descoberta",
+                description: "Discussões sobre a descoberta",
                 members: "2.5k",
                 online: "32",
-                image: "T",
-                categories: ["tecnologia", "populares"]
+                image: "D",
+                categories: ["descoberta", "populares"]
             },
             {
-                name: "Gamers Unite",
+                name: "Aceitação",
                 description: "Comunidade de jogadores e entusiastas",
                 members: "1.8k",
                 online: "45",
                 image: "G",
-                categories: ["tecnologia", "recentes"]
+                categories: ["aceitação", "recentes"]
             },
             {
-                name: "Arte & Cultura",
-                description: "Compartilhe suas criações artísticas",
+                name: "Gestação",
+                description: "Dicas para uma gravidez saudável",
                 members: "950",
                 online: "18",
-                image: "A",
-                categories: ["arte"]
+                image: "G",
+                categories: ["gravidez"]
             },
             {
-                name: "Música & Melodia",
+                name: "Contexto familiar",
                 description: "Para amantes de música e compositores",
                 members: "1.2k",
                 online: "28",
-                image: "M",
-                categories: ["música", "recentes"]
+                image: "C",
+                categories: ["familia", "recentes"]
             },
             {
-                name: "Esportes & Fitness",
+                name: "Atividades para crianças com Síndrome de Down",
+                description: "sugestões de atividades para fazer com o seu filho(a)",
+                members: "3.1k",
+                online: "67",
+                image: "A",
+                categories: ["educação", "populares"]
+            },
+            {
+                name: "Convívio social e escolar",
                 description: "Dicas de treino e discussões esportivas",
                 members: "3.1k",
                 online: "67",
-                image: "E",
-                categories: ["esportes", "populares"]
+                image: "C",
+                categories: ["social e escolar", "populares"]
             }
         ];
 
