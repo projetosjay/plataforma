@@ -33,7 +33,7 @@
         h2 {
             color: #A2AEF7;
             text-align: center;
-            margin-bottom: 15px;
+            margin-bottom: 0;
             font-size: 2em;
             font-weight: 600;
         }
@@ -197,11 +197,71 @@
                 font-size: 20px;
             }
         }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .profile-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #A2AEF7;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .profile-icon:hover {
+            transform: translateY(-2px);
+            border-color: #8b9af0;
+        }
+
+        .profile-image {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .profile-icon::after {
+            content: 'Ver perfil';
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            opacity: 0;
+            transition: all 0.3s ease;
+            pointer-events: none;
+            white-space: nowrap;
+        }
+
+        .profile-icon:hover::after {
+            opacity: 1;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h2>Grupos de Chat</h2>
+        <div class="header">
+            <div style="width: 40px"></div> 
+            <h2>Grupos de Chat</h2>
+            <a href="{{ url_for('profile') }}" class="profile-icon">
+                <img src="{{ user.profile_image or '/api/placeholder/...' }}" alt="" class="profile-image">
+            </a>
+        </div>
+
         <div class="search-container">
             <input type="text" placeholder="Buscar grupos..." id="searchInput">
         </div>
@@ -217,7 +277,6 @@
         </div>
 
         <div class="groups-container" id="groupsContainer">
-            <!-- Os grupos serão inseridos via JavaScript -->
         </div>
         <div class="no-results" id="noResults">
             Nenhum grupo encontrado com esses critérios.
@@ -268,13 +327,11 @@
             }
         ];
 
-        // Elementos DOM
         const groupsContainer = document.getElementById('groupsContainer');
         const searchInput = document.getElementById('searchInput');
         const categoriesContainer = document.getElementById('categories');
         const noResults = document.getElementById('noResults');
 
-        // Renderiza um grupo
         function createGroupCard(group) {
             return `
                 <div class="group-card" data-categories="${group.categories.join(',')}">
@@ -293,12 +350,10 @@
             `;
         }
 
-        // Renderiza todos os grupos
         function renderGroups() {
             groupsContainer.innerHTML = groups.map(group => createGroupCard(group)).join('');
         }
 
-        // Filtra os grupos
         function filterGroups() {
             const searchTerm = searchInput.value.toLowerCase();
             const activeCategory = document.querySelector('.category.active').dataset.category;
@@ -325,7 +380,6 @@
             noResults.style.display = hasVisibleGroups ? 'none' : 'block';
         }
 
-        // Event Listeners
         searchInput.addEventListener('input', filterGroups);
 
         categoriesContainer.addEventListener('click', (e) => {
@@ -338,7 +392,6 @@
             }
         });
 
-        // Inicialização
         renderGroups();
     </script>
 </body>

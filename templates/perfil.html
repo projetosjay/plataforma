@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil do Usuário</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #A2AEF7, #FCF8CC);
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        h2 {
+            color: #A2AEF7;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2em;
+            font-weight: 600;
+        }
+
+        .profile-section {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .profile-picture {
+            width: 120px;
+            height: 120px;
+            border-radius: 60px;
+            background: #f8f9fa;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 3px solid #A2AEF7;
+            overflow: hidden;
+        }
+
+        .profile-picture img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .info-group {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+            border: 2px solid #eee;
+        }
+
+        .info-label {
+            color: #666;
+            font-size: 0.9em;
+            margin-bottom: 5px;
+        }
+
+        .info-value {
+            color: #333;
+            font-size: 1.1em;
+            font-weight: 500;
+        }
+
+        button {
+            background: #A2AEF7;
+            color: white;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        button:hover {
+            background: #8b9af0;
+            transform: translateY(-2px);
+        }
+
+        .logout-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        a {
+            color: #A2AEF7;
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        a:hover {
+            color: #8b9af0;
+            text-decoration: underline;
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Meu Perfil</h2>
+        <div class="profile-section">
+            <div class="profile-picture">
+                <img src="/api/placeholder/" alt="">
+            </div>
+            <div class="info-group">
+                <div class="info-label">Nome de usuário</div>
+                <div class="info-value"></div>
+            </div>
+            <div class="info-group">
+                <div class="info-label">Email</div>
+                <div class="info-value"></div>
+            </div>
+            <div class="info-group">
+                <div class="info-label">Data de cadastro</div>
+                <div class="info-value"></div>
+            </div>
+            <button>
+                Editar Perfil
+            </button>
+        </div>
+        <div class="logout-link">
+            <a href="{{ url_for('logout') }}">Sair da conta</a>
+        </div>
+    </div>
+</body>
+</html>
